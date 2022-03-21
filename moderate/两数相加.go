@@ -1,6 +1,9 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+	"unsafe"
+)
 
 /**
  * Created by : GoLand
@@ -10,6 +13,7 @@ import "fmt"
  */
 
 //难度: 中等
+//核心思想: 注意和为两位数时进位,利用辅助指针方便添加链表节点
 
 type ListNode struct {
 	Val  int
@@ -44,7 +48,7 @@ func reversalString(input string) string {
 	for i := inputLength - 1; i >= 0; i-- {
 		bytes = append(bytes, input[i])
 	}
-	return string(bytes)
+	return *(*string)(unsafe.Pointer(&bytes))
 }
 
 func addTwoNumbers(l1 *ListNode, l2 *ListNode) *ListNode {
